@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="EventHandling/EventHandling.csproj" />
+   <Project Path="TemperatureEventHandling/TemperatureEventHandling.csproj" />
+   <Project Path="AdvanceEventHandling/AdvanceEventHandling.csproj" />
+</Solution>

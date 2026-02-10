@@ -20,42 +20,7 @@
     }
 
 
-    // ===================== SUBSCRIBER CLASS =====================
-    // This class listens to events raised by HeatSensor
-    public class Thermostat
-    {
-        // Constructor receives sensor and subscribes to its events
-        public Thermostat(HeatSensor sensor)
-        {
-            sensor.WarningReached += OnWarning;
-            sensor.EmergencyReached += OnEmergency;
-            sensor.TemperatureNormal += OnNormal;
-        }
-
-        // Called when warning temperature reached
-        private void OnWarning(object sender, TemperatureEventArgs e)
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"⚠ {e.Temperature} Warning: Cooling ON");
-            Console.ResetColor();
-        }
-
-        // Called when emergency temperature reached
-        private void OnEmergency(object sender, TemperatureEventArgs e)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("🚨 Emergency: Device Shutdown");
-            Console.ResetColor();
-        }
-
-        // Called when temperature becomes normal again
-        private void OnNormal(object sender, TemperatureEventArgs e)
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("ℹ Temperature Normal: Cooling OFF");
-            Console.ResetColor();
-        }
-    }
+    
 
 
     // ===================== PUBLISHER CLASS =====================
@@ -133,6 +98,43 @@
                 // Wait 1 second before next reading
                 Thread.Sleep(1000);
             }
+        }
+    }
+
+    // ===================== SUBSCRIBER CLASS =====================
+    // This class listens to events raised by HeatSensor
+    public class Thermostat
+    {
+        // Constructor receives sensor and subscribes to its events
+        public Thermostat(HeatSensor sensor)
+        {
+            sensor.WarningReached += OnWarning;
+            sensor.EmergencyReached += OnEmergency;
+            sensor.TemperatureNormal += OnNormal;
+        }
+
+        // Called when warning temperature reached
+        private void OnWarning(object sender, TemperatureEventArgs e)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"⚠ {e.Temperature} Warning: Cooling ON");
+            Console.ResetColor();
+        }
+
+        // Called when emergency temperature reached
+        private void OnEmergency(object sender, TemperatureEventArgs e)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("🚨 Emergency: Device Shutdown");
+            Console.ResetColor();
+        }
+
+        // Called when temperature becomes normal again
+        private void OnNormal(object sender, TemperatureEventArgs e)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("ℹ Temperature Normal: Cooling OFF");
+            Console.ResetColor();
         }
     }
 
